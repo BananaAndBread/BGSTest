@@ -45,8 +45,7 @@ export default {
   ** https://nuxtjs.org/guide/plugins
   */
   plugins: [
-    '@plugins/vuetify',
-    { ssr: false, src: '@plugins/addAuthAxios' }
+    '@plugins/vuetify'
   ],
   /*
   ** Auto import components
@@ -66,6 +65,8 @@ export default {
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
+    '@nuxtjs/auth'
+
   ],
   /*
   ** Axios module configuration
@@ -78,5 +79,12 @@ export default {
   */
   build: {
     transpile: ['@nuxtjs/auth']
+  },
+  auth: {
+    strategies: {
+      customStrategy: {
+        _scheme: '~/schemes/customScheme'
+      }
+    }
   }
 }
