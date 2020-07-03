@@ -20,7 +20,7 @@ $ sudo npm run start
 
 # generate static project
 $ sudo npm run generate
-
+```
 ## Build Setup (docker)
 
 ```bash
