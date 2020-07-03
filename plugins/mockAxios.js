@@ -10,7 +10,8 @@ export default ({ $axios }) => {
       born: 'Elon Reeve Musk\n June 28, 1971 (age 49)\nPretoria, South Africa',
       citizenship: 'South Africa (1971–present)\n' +
         'Canada (1971–present)\n' +
-        'United States (2002–present)\n'
+        'United States (2002–present)\n',
+      email: 'Press@tesla.com'
     }
   }
   const mock = new MockAdapter($axios)
