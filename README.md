@@ -30,6 +30,8 @@ $ docker-compose -f docker-compose.dev.yml up
 # build for production and launch server
 $ docker-compose up
 ```
-
+## Credentials for login
+admin@admin.com
+adminadmin
 
 For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
