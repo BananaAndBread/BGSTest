@@ -45,7 +45,8 @@ export default {
   ** https://nuxtjs.org/guide/plugins
   */
   plugins: [
-    '@plugins/vuetify'
+    '@plugins/vuetify',
+    '@plugins/mockAxios'
   ],
   /*
   ** Auto import components
@@ -83,8 +84,15 @@ export default {
   auth: {
     strategies: {
       customStrategy: {
-        _scheme: '~/schemes/customScheme'
+        _scheme: '~/schemes/customScheme',
+        endpoints: {
+          logout: false,
+          user: false
+        }
       }
+    },
+    redirect: {
+      logout: '/login'
     }
   }
 }

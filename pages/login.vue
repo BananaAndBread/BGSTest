@@ -3,6 +3,9 @@
     <div class="card">
       <v-form v-model="valid" @submit.prevent.stop="login">
         <v-container>
+          <v-alert v-if="invalidCredentials" type="error">
+            Invalid Credentials
+          </v-alert>
           <v-text-field
             v-model="email"
             :rules="emailRules"
@@ -32,10 +35,10 @@
 
 <script>
 export default {
-  mounted () {
-    console.log(this.$store.state.auth.loggedIn)
+  components: {
   },
   data: () => ({
+    invalidCredentials: false,
     valid: false,
     email: '',
     emailRules: [
@@ -50,6 +53,7 @@ export default {
       emailMatch: () => ('The email and password you entered don\'t match')
     }
   }),
+  middleware: 'login',
   methods: {
     login () {
       if (this.valid) {
@@ -59,13 +63,12 @@ export default {
           email,
           password
         }).then(() => {
-          console.log('kekekekekeke')
           this.$router.push('/profile')
+        }).catch(() => {
+          this.invalidCredentials = true
         })
       }
     }
-  },
-  components: {
   }
 }
 </script>
