@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <div class="card">
-      <v-form v-model="valid" @submit.prevent="login">
+      <v-form v-model="valid" @submit.prevent.stop="login">
         <v-container>
           <v-text-field
             v-model="email"
@@ -20,7 +20,7 @@
             @click:append="show1 = !show1"
           />
           <div class="my-2">
-            <v-btn type="submit" depressed color="primary">
+            <v-btn type="submit" :disabled="!valid" depressed color="primary">
               Login
             </v-btn>
           </div>
@@ -33,8 +33,7 @@
 <script>
 export default {
   mounted () {
-    console.log(localStorage.getItem('user-token'))
-    console.log(this.$store.state.auth.isAuthenticated)
+    console.log(this.$store.state.auth.loggedIn)
   },
   data: () => ({
     valid: false,
@@ -53,11 +52,20 @@ export default {
   }),
   methods: {
     login () {
-      console.log('start login')
-      const email = 'admin@admin.com'
-      const password = 'adminadmin'
-      this.$store.dispatch('auth/login', { email, password })
+      if (this.valid) {
+        const email = this.email
+        const password = this.password
+        this.$auth.loginWith('customStrategy', {
+          email,
+          password
+        }).then(() => {
+          console.log('kekekekekeke')
+          this.$router.push('/profile')
+        })
+      }
     }
+  },
+  components: {
   }
 }
 </script>
