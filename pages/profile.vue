@@ -11,7 +11,7 @@
                 size="164"
                 tile
               >
-                <v-img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Elon_Musk_Royal_Society.jpg/440px-Elon_Musk_Royal_Society.jpg" />
+                <v-img :src="image" />
               </v-avatar>
             </v-col>
             <v-col
@@ -54,15 +54,24 @@
 
 <script>
 export default {
-  async asyncData ({ $axios, $auth }) {
-    const data = await $axios.$get('/users/1', { withCredentials: true })
-    return { info: data }
+  async asyncData ({ $axios }) {
+    let response = await $axios
+      .get('users/me')
+    const id = response.data.id
+    response = await $axios
+      .get(`/users/${id}/image`)
+    const buffer = response.data.image
+    const data = await $axios.$get(`/users/${id}`, { withCredentials: true })
+    return { info: data, image: buffer }
   },
   middleware: 'auth',
   data: () => {
     return {
-      info: {}
+      info: {},
+      image: {}
     }
+  },
+  async mounted () {
   },
   methods: {
     async logout () {
