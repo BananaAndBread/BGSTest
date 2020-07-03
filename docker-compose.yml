@@ -4,7 +4,6 @@ services:
     build: .
     environment:
       - HOST=0.0.0.0
-    command: "npm run build"
     command: "npm run start"
     volumes:
       - .:/usr/app

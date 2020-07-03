@@ -4,3 +4,4 @@ COPY package.json .
 RUN apk update && apk add python make g++
 RUN npm install --quiet
 COPY . .
+RUN npm run build
