@@ -4,8 +4,7 @@ services:
     build: .
     environment:
       - HOST=0.0.0.0
-    command: npm run build
-    command: npm run start
+    command: npm run dev
     volumes:
       - .:/usr/app
       - /usr/app/node_modules
