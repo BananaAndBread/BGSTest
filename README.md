@@ -1,4 +1,3 @@
-# BGSTest
 
 ## Build Setup (npm)
 
